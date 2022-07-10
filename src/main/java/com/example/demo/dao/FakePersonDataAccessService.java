@@ -26,4 +26,15 @@ public class FakePersonDataAccessService implements PersonDao {
     public List<Person> getAllPerson() {
         return DB;
     }
+
+    @Override
+    public int deletePersonById(UUID id) {
+        Optional<Person> personMaybe = getPersonById(id);
+        if(personMaybe.isEmpty()){
+            return 0;
+        }else {
+            DB.remove(personMaybe.get());
+            return 1;
+        }
+    }
 }

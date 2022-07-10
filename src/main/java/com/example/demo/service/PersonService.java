@@ -31,6 +31,10 @@ public class PersonService {
         return personDao.getPersonById(id);
     }
 
+    public int deletePersonById(UUID id){
+        return personDao.deletePersonById(id);
+    }
+
 
 
 }
