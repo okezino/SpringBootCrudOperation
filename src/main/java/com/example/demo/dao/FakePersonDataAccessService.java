@@ -37,4 +37,16 @@ public class FakePersonDataAccessService implements PersonDao {
             return 1;
         }
     }
+
+    @Override
+    public int updatePersonById(UUID id, Person person) {
+        Optional<Person> personMaybe = getPersonById(id);
+        if(personMaybe.isEmpty()){
+            return 0;
+        }else {
+            int indexOfDeletedPerson = DB.indexOf(personMaybe.get());
+            DB.set(indexOfDeletedPerson, new Person(id,person.getName()));
+            return 1;
+        }
+    }
 }
